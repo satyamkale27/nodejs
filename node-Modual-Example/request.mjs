@@ -7,7 +7,4 @@ function send(url, data) {
   const encrypteddata = encrypt(data);
   console.log(`sending ${encrypteddata} to ${url}`);
 }
-module.exports = {
-  REQUEST_TIMEOUT,
-  send,
-};
+export { REQUEST_TIMEOUT, send };
