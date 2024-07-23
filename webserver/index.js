@@ -22,9 +22,9 @@ server.on("request", (req, res) => {
   const items = req.url.split("/");
   if (req.method === "POST" && items[1] === "friends") {
     req.on("data", (data) => {
-      const frend = data.toString(); // pars to string to log //
+      const friend = data.toString(); // pars to string to log //
       console.log("Request:", friend);
-      JSON.parse(frend); // pars back to object to use //
+      friends.push(JSON.parse(friend)); // pars back to object to use and push to friends//
     });
   } else if (req.method === "GET" && items[1] === "friends") {
     res.statusCode = 200;
