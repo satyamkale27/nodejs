@@ -20,7 +20,13 @@ const friends = [
 ];
 server.on("request", (req, res) => {
   const items = req.url.split("/");
-  if (items[1] === "friends") {
+  if (req.method === "POST" && items[1] === "friends") {
+    req.on("data", (data) => {
+      const frend = data.toString(); // pars to string to log //
+      console.log("Request:", friend);
+      JSON.parse(frend); // pars back to object to use //
+    });
+  } else if (req.method === "GET" && items[1] === "friends") {
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
 
@@ -30,7 +36,7 @@ server.on("request", (req, res) => {
     } else {
       res.end(JSON.stringify(friends));
     }
-  } else if (items[1] === "messages") {
+  } else if (req.method === "GET" && items[1] === "messages") {
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
     res.write("<body>");
